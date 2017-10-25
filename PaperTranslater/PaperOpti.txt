@@ -1,7 +1,1 @@
-﻿Recent work in object based image retrieval [20, 24] has mimicked simple text-retrieval systems using the analogy of “visual words.” Images are scanned for “salient” regions and a high-dimensional descriptor is computed for each region. 
-
-These descriptors are then quantized or clustered into a vocabulary of visual words, and each salient region is mapped to the visual word closest to it under this clustering. 
-
-An image is then represented as a bag of visual words, and these are entered into an index for later querying and retrieval. 
-
-Typically, no spatial information about the imagelocation of the visual words is used in the filtering stage.
+﻿#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" ) 

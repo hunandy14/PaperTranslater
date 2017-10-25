@@ -4,6 +4,7 @@ Date : 2017/10/23
 By   : CharlotteHonG
 Final: 2017/10/23
 *****************************************************************/
+#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -11,6 +12,9 @@ Final: 2017/10/23
 #include <windows.h>
 #include <atlstr.h> 
 using namespace std;
+
+#define _WIN32_WINNT 0x0500
+
 
 CStringW getClipboard();
 void WriteFiles(char* fileName, const CStringW& ClipStrW);
