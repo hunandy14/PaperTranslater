@@ -1,7 +1,3 @@
-﻿Recent work in object based image retrieval [20, 24] has mimicked simple text-retrieval systems using the analogy of “visual words.” Images are scanned for “salient” regions and a high-dimensional descriptor is computed for each region. 
+﻿Figure 1. 42 randomly sampled images from the 5K dataset. Note that the dataset contains difficult distractors which may easily be confused with those used in the query set. 
 
-These descriptors are then quantized or clustered into a vocabulary of visual words, and each salient region is mapped to the visual word closest to it under this clustering. 
-
-An image is then represented as a bag of visual words, and these are entered into an index for later querying and retrieval. 
-
-Typically, no spatial information about the imagelocation of the visual words is used in the filtering stage.
+Dataset # images # features Size of descriptors 5K 5,062 16,334,970 1.9 GB 100K 99,782 277,770,833 33.1 GB 1M 1,040,801 1,186,469,709 141.4 GB Total 1,145,645 1,480,575,512 176.4 GB Table 1. The number of images, features and descriptor sizes for each dataset.

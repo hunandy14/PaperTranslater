@@ -13,6 +13,7 @@ Final: 2017/10/23
 #include <atlstr.h> 
 using namespace std;
 
+#define SENTENCE_LEN 150
 #define _WIN32_WINNT 0x0500
 
 
@@ -126,7 +127,15 @@ void OptiText(CStringW& ClipStrW) {
 		}
 	}
 	// 句尾空行
-	StrReplace(clipStr, L". ", _T(". \r\n\r\n"));
-
+	string::size_type idxPre=0;
+	for (string::size_type idx = clipStr.find(L". ", 1);
+		idx!=std::string::npos; 
+		idx = clipStr.find(L". ", idx+1))
+	{
+		if (idx-idxPre < SENTENCE_LEN) {continue;}
+		if (idx>0 && isdigit(clipStr[idx-1])) {continue;}
+		clipStr.replace(idx, 2, L". \r\n\r\n");
+		idxPre = idx;
+	}
 	ClipStrW = (CStringW)clipStr.c_str();
 }
