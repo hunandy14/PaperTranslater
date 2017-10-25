@@ -109,15 +109,22 @@ void OptiText(CStringW& ClipStrW) {
 	auto StrReplace = [&](wstring& clipStr, wstring dst, wstring str) {
 		for (string::size_type idx = clipStr.find(dst, 1);
 			idx!=std::string::npos; 
-			idx = clipStr.find(dst, idx))
+			idx = clipStr.find(dst, idx+1))
 		{
 			clipStr.replace(idx, dst.length(), str);
-			if (str!=L"") {++idx;}
 			//cout << "idx=" << idx << endl;
 		}
 	};
-	// 刪除空格
-	StrReplace(clipStr, L"\r\n", _T(""));
+	// 刪除跳行
+	StrReplace(clipStr, L"\r\n", _T(" "));
+	// 刪除連續空格
+	size_t len = clipStr.length();
+	for (size_t i = 0; i < len-1; i++) {
+		if (clipStr[i] == L' ' && clipStr[i+1] == L' ') {
+			clipStr.erase(i--,1);
+			--len;
+		}
+	}
 	// 句尾空行
 	StrReplace(clipStr, L". ", _T(". \r\n\r\n"));
 

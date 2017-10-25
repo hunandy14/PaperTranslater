@@ -1,17 +1,7 @@
-﻿Despite the analogy between “visual words” and words in text documents, the trade-offs in ranking images and web pages are somewhat different. 
+﻿Recent work in object based image retrieval [20, 24] has mimicked simple text-retrieval systems using the analogy of “visual words.” Images are scanned for “salient” regions and a high-dimensional descriptor is computed for each region. 
 
-An image query is generated from an example image region and typically contains many more words than a text query. 
+These descriptors are then quantized or clustered into a vocabulary of visual words, and each salient region is mapped to the visual word closest to it under this clustering. 
 
-The words are “noisier” however: in the web search case the user deliberately attempts to choose words that are relevant to the query, whereas the choice of words is abstracted away by the system in the image-retrieval case, and cannot be understood or guided by the user. 
+An image is then represented as a bag of visual words, and these are entered into an index for later querying and retrieval. 
 
-Consequently, while web-search engines usually treat every query as a conjunction, object-retrieval systems typically include images that contain only, for example, 90% of the query words, in the filtered set. 
-
-The biggest difference, however, is that the visual words in an image-retrieval query encode vastly more spatial structure than a text query. 
-
-A user who types a three-word text query may in general be searching for documents containing those three words in any order, at any positions in the document. 
-
-A visual query however, since it is selected from a sample image, automatically and inescapably in-cludes visual words in a spatial configuration corresponding to some view of the object; it is therefore reasonable to try to make use of this spatial information when searching the corpus for different views of the same object. 
-
-In this paper we investigate two directions for improving visual object-retrieval performance. 
-
-In both cases we are guided by the constraint that the methods should be scalable to extremely large image corpora.ra.
+Typically, no spatial information about the imagelocation of the visual words is used in the filtering stage.
