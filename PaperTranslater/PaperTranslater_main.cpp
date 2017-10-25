@@ -14,7 +14,7 @@ using namespace std;
 
 CStringW getClipboard();
 void WriteFiles(char* fileName, const CStringW& ClipStrW);
-void SetClipboardStr(const CStringW& Str);
+void SetClipboardStr(const CStringW& StrW);
 void OptiText(CStringW& ClipStrW);
 //================================================================
 int main(int argc, char const *argv[]){
@@ -28,6 +28,7 @@ int main(int argc, char const *argv[]){
 	SetClipboardStr(ClipStrW);
 	return 0;
 }
+//================================================================
 //獲取剪貼簿
 CStringW getClipboard(){
 	/* 轉型(char*)(LPCSTR)(CStringA)
@@ -64,14 +65,15 @@ void WriteFiles(char* fileName, const CStringW& ClipStrW) {
 	file << result;
 }
 // 設定剪貼簿
-void SetClipboardStr(const CStringW& Str) {
+void SetClipboardStr(const CStringW& StrW) {
 	// 參考：https://goo.gl/XYppCD
 
 	// 轉寬char
-	const char* clipStr = (LPCSTR)((CStringA)Str);
-	wchar_t* wString = new wchar_t[strlen(clipStr)+1];
-	MultiByteToWideChar(CP_ACP, 0, clipStr, -1, wString, strlen(clipStr));
-	wString[strlen(clipStr)] = '\0';
+	const CStringA& strA = static_cast<const CStringA>(StrW);
+	const char* clipText = static_cast<LPCSTR>(strA);
+	wchar_t* wString = new wchar_t[strlen(clipText)+1];
+	MultiByteToWideChar(CP_ACP, 0, clipText, -1, wString, strlen(clipText));
+	wString[strlen(clipText)] = '\0';
 	LPWSTR cwdBuffer = wString;
 	// Get the current working directory:
 	//if( (cwdBuffer = _wgetcwd( NULL, 0 )) == NULL ) return 1; 
