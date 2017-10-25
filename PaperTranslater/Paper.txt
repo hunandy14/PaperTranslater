@@ -1,1 +1,17 @@
-﻿#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" ) 
+﻿Despite the analogy between “visual words” and words in text documents, the trade-offs in ranking images and web pages are somewhat different. 
+
+An image query is generated from an example image region and typically contains many more words than a text query. 
+
+The words are “noisier” however: in the web search case the user deliberately attempts to choose words that are relevant to the query, whereas the choice of words is abstracted away by the system in the image-retrieval case, and cannot be understood or guided by the user. 
+
+Consequently, while web-search engines usually treat every query as a conjunction, object-retrieval systems typically include images that contain only, for example, 90% of the query words, in the filtered set. 
+
+The biggest difference, however, is that the visual words in an image-retrieval query encode vastly more spatial structure than a text query. 
+
+A user who types a three-word text query may in general be searching for documents containing those three words in any order, at any positions in the document. 
+
+A visual query however, since it is selected from a sample image, automatically and inescapably in-cludes visual words in a spatial configuration corresponding to some view of the object; it is therefore reasonable to try to make use of this spatial information when searching the corpus for different views of the same object. 
+
+In this paper we investigate two directions for improving visual object-retrieval performance. 
+
+In both cases we are guided by the constraint that the methods should be scalable to extremely large image corpora.ra.

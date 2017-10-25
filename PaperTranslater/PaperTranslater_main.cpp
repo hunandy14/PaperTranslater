@@ -4,7 +4,7 @@ Date : 2017/10/23
 By   : CharlotteHonG
 Final: 2017/10/23
 *****************************************************************/
-#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
+//#pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -22,6 +22,10 @@ void SetClipboardStr(const CStringW& StrW);
 void OptiText(CStringW& ClipStrW);
 //================================================================
 int main(int argc, char const *argv[]){
+	HWND hWnd = GetConsoleWindow();
+	ShowWindow(hWnd, SW_HIDE);
+
+
 	// 獲取剪貼簿內容
 	CStringW ClipStrW = getClipboard();
 	WriteFiles("Paper.txt", ClipStrW);
@@ -105,14 +109,15 @@ void OptiText(CStringW& ClipStrW) {
 	auto StrReplace = [&](wstring& clipStr, wstring dst, wstring str) {
 		for (string::size_type idx = clipStr.find(dst, 1);
 			idx!=std::string::npos; 
-			idx = clipStr.find(dst, idx+1))
+			idx = clipStr.find(dst, idx))
 		{
 			clipStr.replace(idx, dst.length(), str);
+			if (str!=L"") {++idx;}
 			//cout << "idx=" << idx << endl;
 		}
 	};
 	// 刪除空格
-	StrReplace(clipStr, L"\r\n", _T(" "));
+	StrReplace(clipStr, L"\r\n", _T(""));
 	// 句尾空行
 	StrReplace(clipStr, L". ", _T(". \r\n\r\n"));
 
