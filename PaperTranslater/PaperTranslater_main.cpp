@@ -13,7 +13,7 @@ Final: 2017/10/23
 #include <atlstr.h> 
 using namespace std;
 
-#define SENTENCE_LEN 150
+#define SENTENCE_LEN 100
 #define _WIN32_WINNT 0x0500
 
 
@@ -35,6 +35,16 @@ int main(int argc, char const *argv[]){
 	WriteFiles("PaperOpti.txt", ClipStrW);
 	// 設定剪貼簿內容
 	SetClipboardStr(ClipStrW);
+
+	// 貼上
+	/*
+	keybd_event(VK_CONTROL ,0,0,0);
+	Sleep(3);
+	keybd_event(65+21 ,0,0,0);
+	keybd_event(65+21 ,0,KEYEVENTF_KEYUP,0);
+	Sleep(3);
+	keybd_event(VK_CONTROL ,0,KEYEVENTF_KEYUP,0);
+	*/
 	return 0;
 }
 //================================================================
@@ -137,5 +147,7 @@ void OptiText(CStringW& ClipStrW) {
 		clipStr.replace(idx, 2, L". \r\n\r\n");
 		idxPre = idx;
 	}
+	// 結尾補空白方便銜接
+	clipStr += L" ";
 	ClipStrW = (CStringW)clipStr.c_str();
 }
